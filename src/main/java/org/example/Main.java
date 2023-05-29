@@ -32,12 +32,23 @@ public class Main {
             switch(x){
                 case 1 : queue.display( queue.size());
                     break;
-                case 2 : System.out.println("Enter Patient Name");
-                    String name = sc.next();
+                case 2 :
+                    sc.nextLine();      //consume new-line leftover
+                    System.out.println("Enter Patient Name");
+                    String name = sc.nextLine();
                     System.out.println("Enter Patient Age");
-                    int age = sc.nextInt();
-                    queue.enqueue(patientRecord.addPatient(name, age));
-                    System.out.println("Added Successfully" ) ;  break;
+                    if(sc.hasNextInt()){                //validate if input is integer
+                        int age = sc.nextInt();
+                        boolean isValidAge = validateAge(age);
+                        if(isValidAge) {
+                            queue.enqueue(patientRecord.addPatient(name, age));
+                            System.out.println("Added Successfully");
+                        }
+                    }else{
+                        String invalidAge = sc.nextLine();
+                        System.out.println(invalidAge + " is not a valid age. Please try again");
+                    }
+                    break;
                 case 3 : System.out.println("The next patient is " + queue.next());
                     break;
                 case 4 : //queue.dequeue();
@@ -48,6 +59,15 @@ public class Main {
 
             }
         }
+    }
+
+    //check if age is within a range (1 to 100)
+    private static boolean validateAge(int age) {
+        if(age < 1 || age > 100){
+            System.out.println("Please enter a valid age");
+            return false;
+        }
+        return true;
     }
 
 }
