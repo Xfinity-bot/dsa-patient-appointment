@@ -28,7 +28,7 @@ public class PatientRecord {
     }
 
     public int addPatient(String name, int age) {
-        int id = sizeDLL() + 1;
+        int id = (sizeDLL() + 1)*100;
         Patient patient = new Patient(name, age, id);
         if (head == null) {
             head = patient;
