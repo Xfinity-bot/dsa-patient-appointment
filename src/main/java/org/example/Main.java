@@ -15,7 +15,7 @@ public class Main {
         PatientRecord patientRecord = new PatientRecord();
         ConsultQueue queue = new ConsultQueue(100,patientRecord);
         Scanner sc=new Scanner(System.in);
-        int x ;
+        String x ;
 
         //Read from the test input and register them as
         File file = new File("input.txt");
@@ -41,11 +41,11 @@ public class Main {
             System.out.println("4.Delete Patient");
             System.out.println("5.Exit");
             System.out.print("Enter your choice:");
-            x= sc.nextInt();
+            x= sc.next();
             switch(x){
-                case 1 : queue.display( queue.size());
+                case "1" : queue.display( queue.size());
                     break;
-                case 2 :
+                case "2" :
                     sc.nextLine();      //consume new-line leftover
                     System.out.print("Enter Patient Name:");
                     String name = sc.nextLine();
@@ -66,15 +66,15 @@ public class Main {
                         System.out.println();
                     }
                     break;
-                case 3 : System.out.println("The next patient is " + queue.next());
+                case "3" : System.out.println("The next patient is " + queue.next());
                     System.out.println();
                     break;
-                case 4 : //queue.dequeue();
+                case "4" : //queue.dequeue();
                     System.out.println(patientRecord.getPatient(queue.dequeue()).name + " visited");
                     System.out.println();
                     break;
-                case 5 : System.exit(0);
-                default:System.out.println("Invalid Entry. Please try again");
+                case "5" : System.exit(0);
+                default  : System.out.println("Invalid Entry. Please try again");
 
             }
         }
