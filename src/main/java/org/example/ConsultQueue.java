@@ -2,6 +2,7 @@ package org.example;
 
 import java.util.Arrays;
 import java.util.NoSuchElementException;
+
 //test
 public class ConsultQueue {
     private int[] heap;
@@ -51,24 +52,21 @@ public class ConsultQueue {
             throw new NoSuchElementException("Consult queue is empty");
         }
 
-        for(int i=0;i<size;i++){
-
-            System.out.print(heap[i] );
-        }
-        System.out.println();
-
         int[] tempHeap = Arrays.copyOf(heap, size);
         int[] teemp = heapSort(tempHeap,size);
         System.out.println("------------");
+        System.out.printf("%10s %8s %13s %11s", "Sequence No.", "ID", "Name", "Age");
+        System.out.println();
         for(int i=size-1 ;i>=0;i--){
-            System.out.print(record.getPatient(teemp[i]).id + " ");
-            System.out.print(record.getPatient(teemp[i]).name + " ");
-            System.out.print(record.getPatient(teemp[i]).age + " ");
+            String sequence= Integer.toString(size-i);
+            String id =Integer.toString(record.getPatient(teemp[i]).id);
+            String name=  record.getPatient(teemp[i]).name;
+            String age =Integer.toString(record.getPatient(teemp[i]).age);
+            System.out.printf("%10s %10s %13s %10s", sequence, id, name, age);
             System.out.println();
 
         }
         System.out.println("------------");
-//
     }
     private void shiftUp(int index) {
         int parent = (index - 1) / 2;
