@@ -23,7 +23,7 @@ public class Main {
             System.out.println("1.Display");
             System.out.println("2.Insert Patient Data");
             System.out.println("3.Display Next Patient");
-            System.out.println("4.Delete Patient");
+            System.out.println("4.export to txt file");
             System.out.println("5.Exit");
             System.out.print("Enter your choice:");
             x= sc.next();
@@ -50,15 +50,16 @@ public class Main {
                         System.out.println();
                     }
                     break;
-                case "3" : System.out.println("The next patient is " + queue.next());
+                case "3" :
+
+                    System.out.println("The next patient is " + queue.next());
                     System.out.println();
                     break;
-                case "4" : //queue.dequeue();
-                    System.out.println(patientRecord.getPatient(queue.dequeue()).name + " visited");
-                    System.out.println();
-                    break;
+                case "4":queue.export();break;
+
                 case "5" : System.exit(0);
                 default  : System.out.println("Invalid Entry. Please try again");
+
 
             }
         }
@@ -84,7 +85,8 @@ public class Main {
     //check if age is within a range (1 to 100)
     private static boolean validateAge(int age) {
         if(age < 60 || age > 100){
-            System.out.println(age + " is not a valid age. Please try again");
+            System.out.println();
+            System.out.println(age + " does not qualify as a senior citizen age. Please try again");
             return false;
         }
         return true;

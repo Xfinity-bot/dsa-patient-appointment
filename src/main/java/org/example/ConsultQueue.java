@@ -2,6 +2,8 @@ package org.example;
 
 import java.util.Arrays;
 import java.util.NoSuchElementException;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class ConsultQueue {
     private int[] heap;
@@ -34,7 +36,7 @@ public class ConsultQueue {
         if(size==0){
             return "Consult queue is empty";
         }
-        return record.getPatient(heap[0]).name;
+        return record.getPatient(dequeue()).name;
     }
 
     //Removes the first patient from the heap
@@ -51,6 +53,33 @@ public class ConsultQueue {
 //Returns the size of the list
     public int size() {
         return size;
+    }
+    public void export(){
+        String header ="Sequence No.,ID, Name, Age";
+        int[] tempHeap = Arrays.copyOf(heap, size);
+        int[] teemp = heapSort(tempHeap,size);
+
+
+        try{
+
+            FileWriter writer =new FileWriter("output.txt");
+            writer.write(header+"\n");
+            for(int i=size-1 ;i>=0;i--) {
+                String sequence = Integer.toString(size - i);
+                String id = Integer.toString(record.getPatient(teemp[i]).id);
+                String name = record.getPatient(teemp[i]).name;
+                String age = Integer.toString(record.getPatient(teemp[i]).age);
+                String fString = sequence +"," + id +","+ name +","+ age;
+                writer.write(fString+"\n");
+            }
+            writer.close();
+            System.out.println("Successfully wrote to the file");
+
+
+        }catch(IOException e){
+            System.out.println("An error occured while writing to the file");
+            e.printStackTrace();
+        }
     }
 
 
