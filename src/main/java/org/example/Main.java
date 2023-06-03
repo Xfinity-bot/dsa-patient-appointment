@@ -55,7 +55,6 @@ public class Main {
                         boolean isValidAge = validateAge(age);
                         if(isValidAge) {
                             queue.enqueue(patientRecord.addPatient(name, age));
-                            System.out.println(queue.size());
                             System.out.println("Added patient "+name+ " successfully" );
                             System.out.println();
                             queue.display( queue.size());

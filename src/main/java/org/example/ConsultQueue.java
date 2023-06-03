@@ -62,7 +62,7 @@ public class ConsultQueue {
         }
         int[] tempHeap = Arrays.copyOf(heap, size);
         int[] teemp = heapSort(tempHeap,size);
-        System.out.println("------------");
+        System.out.println("----------------------------------------------------");
         System.out.printf("%10s %8s %13s %11s", "Sequence No.", "ID", "Name", "Age");
         System.out.println();
         for(int i=size-1 ;i>=0;i--){
@@ -73,7 +73,7 @@ public class ConsultQueue {
             System.out.printf("%10s %10s %13s %10s", sequence, id, name, age);
             System.out.println();
         }
-        System.out.println("------------");
+        System.out.println("----------------------------------------------------");
     }
     private void shiftUp(int index) {
         int parent = (index - 1) / 2;
