@@ -135,11 +135,11 @@ public class ConsultQueue {
 
         // If largest is not root, swap root with largest and recursively heapify the affected subtree
         if (largest != i) {
-            int temp = arr[i];
-            arr[i] = arr[largest];
-            arr[largest] = temp;
+                int temp = arr[i];
+                arr[i] = arr[largest];
+                arr[largest] = temp;
 
-            heapify(arr, n, largest);
+                heapify(arr, n, largest);
         }
     }
 }

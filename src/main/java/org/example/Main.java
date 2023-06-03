@@ -7,31 +7,16 @@ import java.io.FileInputStream;
 
 public class Main {
 
-    public void driver(){
-
-    }
+    static PatientRecord patientRecord = new PatientRecord();
+    static ConsultQueue queue = new ConsultQueue(100,patientRecord);
 
     public static void main(String[] args){
-        PatientRecord patientRecord = new PatientRecord();
-        ConsultQueue queue = new ConsultQueue(100,patientRecord);
+
         Scanner sc=new Scanner(System.in);
         String x ;
 
         //Read from the test input and register them as
-        File file = new File("input.txt");
- 
-        try {
-            Scanner scan = new Scanner(file);
-                 while(scan.hasNextLine()){
-                    String[] line = scan.nextLine().split(",");
-                    int id = patientRecord.addPatient(line[0], Integer.parseInt(line[1]));
-                    queue.enqueue(id);
-                 }
-           
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
+        registerPatient();
 
         while(true){
             System.out.println("Menu Options:");
@@ -54,7 +39,7 @@ public class Main {
                         int age = sc.nextInt();
                         boolean isValidAge = validateAge(age);
                         if(isValidAge) {
-                            queue.enqueue(patientRecord.addPatient(name, age));
+                            queue.enqueue(patientRecord.registerPatient(name, age));
                             System.out.println("Added patient "+name+ " successfully" );
                             System.out.println();
                             queue.display( queue.size());
@@ -79,9 +64,26 @@ public class Main {
         }
     }
 
+    private static void registerPatient(){
+        File file = new File("input.txt");
+
+        try {
+            Scanner scan = new Scanner(file);
+            while(scan.hasNextLine()){
+                String[] line = scan.nextLine().split(",");
+                int id = patientRecord.registerPatient(line[0], Integer.parseInt(line[1]));
+                queue.enqueue(id);
+            }
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     //check if age is within a range (1 to 100)
     private static boolean validateAge(int age) {
-        if(age < 1 || age > 100){
+        if(age < 60 || age > 100){
             System.out.println(age + " is not a valid age. Please try again");
             return false;
         }
