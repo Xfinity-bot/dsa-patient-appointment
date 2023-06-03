@@ -27,7 +27,7 @@ public class PatientRecord {
         tail = null;
     }
 
-    public int addPatient(String name, int age) {
+    public int registerPatient(String name, int age) {
         int id = (sizeDLL() + 1)*100;
         Patient patient = new Patient(name, age, id);
         if (head == null) {
